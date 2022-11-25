@@ -2,6 +2,7 @@ import React from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 import LogIn from '../../Authentication/LogIn';
 import Register from '../../Authentication/Register';
+import Blogs from '../../Components/Blogs/Blogs';
 import CategorisPages from '../../Components/CategorisPages/CategorisPages';
 import HomePages from '../../Components/HomePages/HomePages';
 import AddProducts from '../../DashboardComponents/AddProducts/AddProducts';
@@ -13,6 +14,7 @@ import MyProducts from '../../DashboardComponents/MyProducts/MyProducts';
 import ReportedItems from '../../DashboardComponents/ReportedItems/ReportedItems';
 import DeshBoardLayout from '../../Layout/DeshBoardLayout';
 import HomeLayout from '../../Layout/HomeLayout/HomeLayout';
+import Rout404 from '../Rout404/Rout404';
 
 export const WebRouter=createBrowserRouter([
     {
@@ -30,12 +32,20 @@ export const WebRouter=createBrowserRouter([
             {
                 path:'/categories',
                 element:<CategorisPages></CategorisPages>
+            },
+            {
+                path:'/blogs',
+                element:<Blogs></Blogs>
             }
         ]
     },
     {
         path:'/register',
         element:<Register></Register>
+    },
+    {
+        path:'*',
+        element:<Rout404></Rout404>
     },
     {
         path:'/dashboard',

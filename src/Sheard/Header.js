@@ -52,7 +52,7 @@ const Header = () => {
                     </ul>
                 </div>
                 <div className="navbar-end gap-10 hidden md:flex">
-                    <Link>Blogs</Link>
+                    <Link to='/blogs'>Blogs</Link>
                     <Link to='/dashboard'>Dashboard</Link>
                     <div className=''>
                         {
