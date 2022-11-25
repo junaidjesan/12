@@ -6,23 +6,38 @@ import { setAuthToken } from '../Hook/AuthHook';
 import GoogleLogin from './GoogleLogin';
 
 const Register = () => {
-    const {user}=useContext(AuthContext)
+    const { user } = useContext(AuthContext)
     const { EmailCreateUser } = useContext(AuthContext)
 
     const handleRegister = event => {
         event.preventDefault()
         const email = event.target.email.value
         const name = event.target.name.value
+        const role = event.target.role.value
         const password = event.target.password.value
 
 
         EmailCreateUser(email, password)
             .then(res => {
-                setAuthToken(res.user)
-                toast.success('user created successfully!!!')
-                event.target.reset()
+                const createUserData = {
+                    name,
+                    email,
+                    role
+                }
+                fetch('http://localhost:5000/users', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(createUserData)
+                })
+                    .then(res => res.json()).then(data => {
+                        console.log(data)
+                        toast.success('user created successfully!!!')
+                        event.target.reset()
+                    })
             })
-            .catch(er => {console.log(er)})
+            .catch(er => { console.log(er) })
     }
     return (
         <div>
@@ -45,6 +60,11 @@ const Register = () => {
                                 </label>
                                 <input type="email" name='email' placeholder="email" className="input input-bordered" />
                             </div>
+                            <select name='role' className="select w-full">
+                                <option disabled selected>You are</option>
+                                <option selected>Buyer</option>
+                                <option>Seller</option>
+                            </select>
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Password</span>

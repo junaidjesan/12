@@ -16,7 +16,7 @@ const Header = () => {
     return (
         <div>
             <div className="navbar bg-primary mx-auto md:w-[1480px] px-8">
-                <div className="navbar-start">
+                <div className="md:navbar-start justify-between">
                     <div className="dropdown">
                         <label tabIndex={0} className="btn btn-ghost lg:hidden">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
@@ -36,11 +36,11 @@ const Header = () => {
                             <li><a>Item 3</a></li>
                         </ul>
                     </div>
-                    <Link to='/'>BuySell</Link>
+                    <Link className='text-2xl text-clip font-semibold' to='/'>BuySell<small>.com</small></Link>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal p-0">
-                        <li><Link to='/categories'>Categories</Link></li>
+                        <li><Link to='/'>Categories</Link></li>
                         <li tabIndex={0}>
                             <a>
                                 Parent
@@ -56,7 +56,9 @@ const Header = () => {
                 </div>
                 <div className="navbar-end gap-10 hidden md:flex">
                     <Link to='/blogs'>Blogs</Link>
-                    <Link to='/dashboard'>Dashboard</Link>
+                    {
+                        user?.uid && <Link to='/dashboard'>Dashboard</Link>
+                    }
                     <div className=''>
                         {
                             user? 

@@ -1,9 +1,10 @@
 import React from 'react';
+import banner from '../../../image/banner/banner.webp'
 
 const Banner = () => {
     return (
         <div>
-            <div className="hero min-h-screen bg-base-200" style={{ backgroundImage: `url("https://placeimg.com/1000/800/arch")` }}>
+            <div className="hero min-h-screen bg-base-200 bg-cover" style={{ backgroundImage: `url(${banner})` }}>
                 <div className="hero-content text-center">
                     <div className="max-w-md">
                         <h1 className="text-5xl font-bold">Welcome to all</h1>
