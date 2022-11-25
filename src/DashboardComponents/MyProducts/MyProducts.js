@@ -1,8 +1,10 @@
 import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/WebContext';
 
 const MyProducts = () => {
+    const navigate=useNavigate()
     const { user } = useContext(AuthContext)
     const [products, setProducts] = useState([])
 
@@ -31,11 +33,13 @@ const MyProducts = () => {
                                             {product.name}
                                             <div className="badge badge-secondary">{product.condition}</div>
                                             <div className="badge badge-secondary">{product.category}</div>
+                                            <div className="badge badge-secondary">$${product.price}</div>
                                         </h2>
-                                        <p>{product.details}</p>
+                                        <p className='text-black text-start'>{product.description}</p>
                                         <div className="card-actions justify-end">
-                                            <div className="badge badge-outline">Fashion</div>
-                                            <div className="badge badge-outline">Products</div>
+                                            <div className="badge badge-outline">Delete</div>
+                                            <div className="badge badge-outline">Soled</div>
+                                            <div className="badge badge-outline">Make Ads</div>
                                         </div>
                                     </div>
                                 </div>

@@ -1,9 +1,11 @@
 
 import React, { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/WebContext';
 
 const AddProducts = () => {
+    const navigate=useNavigate()
     const {user}=useContext(AuthContext)
 
     const handleAddProducts = (event) => {
@@ -52,6 +54,7 @@ const AddProducts = () => {
                     .then(res => res.json())
                     .then(data => {
                         event.target.reset()
+                        navigate('/dashboard/my-products')
                         toast.success('Product Added successfully!!!')
                     })
 

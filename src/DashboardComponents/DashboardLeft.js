@@ -8,7 +8,7 @@ const DashboardLeft = () => {
             <div><Link to='/dashboard/byers'>All Byers</Link></div>
             <div><Link to='/dashboard/reported-items'>Reported Items</Link></div>
 
-            <div><Link to='/dashboard/add-products'>Add a Products</Link></div>
+            <div><Link to='/dashboard/add-products'>Add a Product</Link></div>
             <div><Link to='/dashboard/my-products'>My Products</Link></div>
             <div><Link to='/dashboard/my-byers'>My Byers</Link></div>
 

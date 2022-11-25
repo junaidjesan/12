@@ -32,7 +32,6 @@ const Register = () => {
                     body: JSON.stringify(createUserData)
                 })
                     .then(res => res.json()).then(data => {
-                        console.log(data)
                         toast.success('user created successfully!!!')
                         event.target.reset()
                     })

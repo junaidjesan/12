@@ -3,6 +3,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import LogIn from '../../Authentication/LogIn';
 import Register from '../../Authentication/Register';
 import Blogs from '../../Components/Blogs/Blogs';
+import CategoryProduct from '../../Components/CategoryProduct/CategoryProduct';
 import HomePages from '../../Components/HomePages/HomePages';
 import AddProducts from '../../DashboardComponents/AddProducts/AddProducts';
 import AllByers from '../../DashboardComponents/AllByers/AllByers';
@@ -31,6 +32,11 @@ export const WebRouter=createBrowserRouter([
             {
                 path:'/blogs',
                 element:<Blogs></Blogs>
+            },
+            {
+                path:'/category-products/:id',
+                element:<CategoryProduct></CategoryProduct>,
+                loader:({params})=>fetch(`http://localhost:5000/category-products/${params.id}`)
             }
         ]
     },

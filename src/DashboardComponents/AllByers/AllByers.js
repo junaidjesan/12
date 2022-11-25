@@ -14,7 +14,7 @@ const AllByers = () => {
         <div>
             {
                 filtered.map(role =>
-                <div key={role._id} className="card w-3/4 mx-auto bg-base-100 shadow-xl">
+                <div key={role._id} className="card w-3/4 mb-5 mx-auto bg-base-100 shadow-xl">
                     <div className="card-body flex">
                         <h2 className="card-title">
                             Name: {role.name}
