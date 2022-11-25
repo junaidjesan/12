@@ -6,6 +6,7 @@ import { useQuery } from '@tanstack/react-query';
 export const AuthContext=createContext()
 const auth=getAuth(app)
 
+
 const WebContext = ({children}) => {
     const [user,setUser]=useState([])
 

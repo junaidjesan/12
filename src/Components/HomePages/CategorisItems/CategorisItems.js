@@ -22,7 +22,11 @@ const CategorisItems = () => {
                 {
                     products.map(product =>
                         <div key={product._id} className="card w-96 bg-base-100 shadow-xl">
-                            <figure><Link to={`/category-products/${product._id}`}><img className='rounded' src={product.categoryImage} alt="Shoes" /></Link></figure>
+                                <Link to={`/category-products/${product._id}`}>
+                            <figure>
+                                <img className='rounded' src={product.categoryImage} alt="Shoes" />
+                            </figure>
+                                </Link>
                         </div>
                         )
                 }
