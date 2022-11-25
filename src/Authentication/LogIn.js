@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../Context/WebContext';
 import GoogleLogin from './GoogleLogin';
@@ -7,14 +8,14 @@ const LogIn = () => {
     const {EmailCreateUser}=useContext(AuthContext)
 
     const handleLogIn=event=>{
-        console.log(event.target)
         event.preventDefault() 
         const email=event.target.email.value 
         const password=event.target.password.value 
 
         EmailCreateUser(email,password)
         .then(res=>{
-            console.log(res)
+            toast.success('logged in successfully')
+            event.target.reset()
         })
         .catch(er=>{})
     }

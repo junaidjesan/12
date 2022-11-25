@@ -3,7 +3,6 @@ import { createBrowserRouter } from 'react-router-dom';
 import LogIn from '../../Authentication/LogIn';
 import Register from '../../Authentication/Register';
 import Blogs from '../../Components/Blogs/Blogs';
-import CategorisPages from '../../Components/CategorisPages/CategorisPages';
 import HomePages from '../../Components/HomePages/HomePages';
 import AddProducts from '../../DashboardComponents/AddProducts/AddProducts';
 import AllByers from '../../DashboardComponents/AllByers/AllByers';
@@ -28,10 +27,6 @@ export const WebRouter=createBrowserRouter([
             {
                 path:'/',
                 element:<HomePages></HomePages>
-            },
-            {
-                path:'/categories',
-                element:<CategorisPages></CategorisPages>
             },
             {
                 path:'/blogs',

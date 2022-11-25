@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../Context/WebContext';
 import { setAuthToken } from '../Hook/AuthHook';
@@ -18,6 +19,8 @@ const Register = () => {
         EmailCreateUser(email, password)
             .then(res => {
                 setAuthToken(res.user)
+                toast.success('user created successfully!!!')
+                event.target.reset()
             })
             .catch(er => {console.log(er)})
     }

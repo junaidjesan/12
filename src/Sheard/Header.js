@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../Context/WebContext';
 
@@ -7,7 +8,9 @@ const Header = () => {
 
     const handleLogOut=()=>{
         LogOutUser()
-        .then(res=>{})
+        .then(res=>{
+            toast.success('log out successfully')
+        })
         .catch(er=>{})
     }
     return (

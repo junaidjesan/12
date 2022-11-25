@@ -1,7 +1,10 @@
 
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import toast from 'react-hot-toast';
+import { AuthContext } from '../../Context/WebContext';
 
 const AddProducts = () => {
+    const {user}=useContext(AuthContext)
 
     const handleAddProducts = (event) => {
         event.preventDefault()
@@ -26,7 +29,6 @@ const AddProducts = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data.data.display_url)
                 const insertSellerProducts = {
                     name,
                     mobile,
@@ -36,7 +38,8 @@ const AddProducts = () => {
                     location,
                     description,
                     year,
-                    image: data.data.display_url
+                    image: data.data.display_url,
+                    email:user.email
                 }
 
                 fetch('http://localhost:5000/all-products', {
@@ -48,6 +51,8 @@ const AddProducts = () => {
                 })
                     .then(res => res.json())
                     .then(data => {
+                        event.target.reset()
+                        toast.success('Product Added successfully!!!')
                     })
 
             })
