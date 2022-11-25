@@ -1,12 +1,23 @@
 import React, { createContext, useEffect, useState } from 'react';
 import app from '../Firebase/Firebase.Config';
 import {createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithPopup, signOut} from 'firebase/auth'
+import { useQuery } from '@tanstack/react-query';
 
 export const AuthContext=createContext()
 const auth=getAuth(app)
 
 const WebContext = ({children}) => {
-    const [user,setUser]=useState(null)
+    const [user,setUser]=useState([])
+
+    const url='http://localhost:5000/users'
+    const {data:usersWithRole=[]}=useQuery({
+        queryKey:['users'],
+        queryFn: async ()=>{
+            const res=await fetch(url)
+            const data=await res.json()
+            return data
+        }
+    })
 
     const googleProvider= new GoogleAuthProvider()
 
@@ -35,6 +46,7 @@ const WebContext = ({children}) => {
         GoogleCreateUser,
         LogOutUser,
         user,
+        usersWithRole,
     }
     
     return (
