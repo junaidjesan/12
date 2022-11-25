@@ -1,22 +1,25 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../Context/WebContext';
+import { setAuthToken } from '../Hook/AuthHook';
 import GoogleLogin from './GoogleLogin';
 
 const Register = () => {
-    const {EmailCreateUser}=useContext(AuthContext)
+    const {user}=useContext(AuthContext)
+    const { EmailCreateUser } = useContext(AuthContext)
 
-    const handleRegister=event=>{
-        event.preventDefault() 
-        const email=event.target.email.value 
-        const name=event.target.name.value 
-        const password=event.target.password.value 
+    const handleRegister = event => {
+        event.preventDefault()
+        const email = event.target.email.value
+        const name = event.target.name.value
+        const password = event.target.password.value
 
-        EmailCreateUser(email,password)
-        .then(res=>{
-            // console.log(res)
-        })
-        .catch(er=>{})
+
+        EmailCreateUser(email, password)
+            .then(res => {
+                setAuthToken(res.user)
+            })
+            .catch(er => {console.log(er)})
     }
     return (
         <div>
