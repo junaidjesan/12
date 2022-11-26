@@ -8,11 +8,11 @@ const DeshBoardLayout = () => {
     return (
         <div>
             <Header></Header>
-            <div className='flex py-20'>
+            <div className='lg:flex py-20'>
                 <div className='md:w-3/12 justify-start mx-auto'>
                     <DashboardLeft></DashboardLeft>
                 </div>
-                <div className='w-7/12 mx-auto'>
+                <div className='w-7/12 mx-auto justify-center'>
                 <Outlet></Outlet>
                 </div>
             </div>

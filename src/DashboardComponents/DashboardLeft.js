@@ -3,10 +3,11 @@ import { Link } from 'react-router-dom';
 
 const DashboardLeft = () => {
     return (
-        <div className='grid grid-cols-1 gap-5 text-start'>
+        <div className='grid grid-cols-3 mx-5 ld:grid-cols-1 gap-5 text-start'>
             <div><Link to='/dashboard/sellers'>All Sellers</Link></div>
             <div><Link to='/dashboard/byers'>All Byers</Link></div>
             <div><Link to='/dashboard/reported-items'>Reported Items</Link></div>
+            <div><Link to='/dashboard/feedback'>Feedback</Link></div>
 
             <div><Link to='/dashboard/add-products'>Add a Product</Link></div>
             <div><Link to='/dashboard/my-products'>My Products</Link></div>

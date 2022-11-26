@@ -8,6 +8,7 @@ import HomePages from '../../Components/HomePages/HomePages';
 import AddProducts from '../../DashboardComponents/AddProducts/AddProducts';
 import AllByers from '../../DashboardComponents/AllByers/AllByers';
 import AllSellers from '../../DashboardComponents/AllSellers/AllSellers';
+import FeedbackShow from '../../DashboardComponents/FeedbackShow/FeedbackShow';
 import MyByers from '../../DashboardComponents/MyByers/MyByers';
 import MyOrders from '../../DashboardComponents/MyOrders/MyOrders';
 import MyProducts from '../../DashboardComponents/MyProducts/MyProducts';
@@ -80,6 +81,10 @@ export const WebRouter=createBrowserRouter([
                 path:'/dashboard/my-byers',
                 element:<MyByers></MyByers>
             },
+            {
+                path:'/dashboard/feedback',
+                element:<FeedbackShow></FeedbackShow>
+            }
         ]
     }
 ])

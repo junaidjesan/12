@@ -1,19 +1,27 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { AuthContext } from '../../../Context/WebContext';
 
 const UserCounter = () => {
+    const {usersWithRole}=useContext(AuthContext)
+
+    const filteruser = usersWithRole.filter(obj => {
+        return obj.role === 'Buyer';
+    });
+    const filterseller = usersWithRole.filter(obj => {
+        return obj.role === 'Seller';
+    });
     return (
         <div>
             <div className="stats stats-vertical bg-primary lg:stats-horizontal shadow">
 
                 <div className="stat">
-                    <div className="stat-title">Downloads</div>
-                    <div className="stat-value">31K</div>
-                    <div className="stat-desc">Jan 1st - Feb 1st</div>
+                    <div className="stat-title">Buyers</div>
+                    <div className="stat-value">{filteruser.length}</div>
                 </div>
 
                 <div className="stat">
-                    <div className="stat-title">New Users</div>
-                    <div className="stat-value">4,200</div>
+                    <div className="stat-title">Sellers</div>
+                    <div className="stat-value">{filterseller.length}</div>
                     <div className="stat-desc">↗︎ 400 (22%)</div>
                 </div>
 
