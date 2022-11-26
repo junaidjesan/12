@@ -1,4 +1,5 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Context/WebContext';
 
 const AllSellers = () => {
@@ -7,6 +8,31 @@ const AllSellers = () => {
     const filtered = usersWithRole.filter(obj => {
         return obj.role === 'Seller';
     });
+    console.log(filtered)
+
+    const [sellerRemain,setSellerRemain]=useState({})
+
+    const handleDelete = datas => {
+        console.log(datas)
+        const permition = window.confirm(`Are you sure to delete`)
+        if (permition) {
+            fetch(`https://localhost:5000/users/${datas._id}`,{
+                method: 'DELETE'
+            })
+                .then(res => res.json())
+                .then(deleteReview => {
+                    console.log(deleteReview)
+                    // if (deleteReview.deletedCount > 0) {
+                    //     alert('Successfully Deleted')
+                    //     const sellerRemains = sellerRemain.filter(usr => usr._id !== datas._id)
+                    //     setSellerRemain(sellerRemains)
+                    // }
+                })
+        }
+    }
+    console.log(sellerRemain)
+
+   
     return (
         <div>
             {
@@ -19,7 +45,7 @@ const AllSellers = () => {
                         <h1 className='text-start'>Email: {role.email}</h1>
                         <div className="card-actions justify-end">
                             <div className="badge badge-outline">verify</div>
-                            <div className="badge badge-outline">delete</div>
+                            <Link><div onClick={()=>handleDelete(role._id)} className="badge badge-outline">delete</div></Link>
                         </div>
                     </div>
                 </div>

@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/WebContext';
 
 const MyProducts = () => {
-    const navigate=useNavigate()
+    const navigate = useNavigate()
     const { user } = useContext(AuthContext)
     const [products, setProducts] = useState([])
 
@@ -13,7 +13,7 @@ const MyProducts = () => {
             .then(res => {
                 setProducts(res.data)
             })
-            .catch(er => {})
+            .catch(er => { })
     }, [user?.email])
     return (
         <div>
@@ -32,16 +32,19 @@ const MyProducts = () => {
                                         <h2 className="card-title">
                                             {product.name}
                                             <div className='grid grid-cols-1 md:grid-cols-3'>
-                                            <div className="badge badge-secondary">{product.condition}</div>
-                                            <div className="badge badge-secondary">{product.category}</div>
-                                            <div className="badge badge-secondary">$${product.price}</div>
+                                                <div className="badge badge-secondary">{product.condition}</div>
+                                                <div className="badge badge-secondary">{product.category}</div>
+                                                <div className="badge badge-secondary">$${product.price}</div>
                                             </div>
                                         </h2>
                                         <p className='text-black text-start'>{product.description}</p>
                                         <div className="card-actions justify-end">
                                             <div className="badge badge-outline">Delete</div>
                                             <div className="badge badge-outline">Soled</div>
-                                            <div className="badge badge-outline">Make Ads</div>
+                                            <div className="badge badge-outline">Make Ads</div>;
+                                                <div className='gap-5'>Time: {product.time}
+                                                    <span className='ml-4'>Date: {product.date}</span>
+                                                </div>
                                         </div>
                                     </div>
                                 </div>

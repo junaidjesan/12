@@ -4,6 +4,12 @@ import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/WebContext';
 
+const current = new Date();
+const currentDate = `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()}`;
+
+const currentTime=new Date()
+const time = currentTime.toLocaleTimeString("en-US");
+
 const AddProducts = () => {
     const navigate=useNavigate()
     const {user}=useContext(AuthContext)
@@ -19,6 +25,7 @@ const AddProducts = () => {
         const year = event.target.year.value
         const category = event.target.category.value
         const image = event.target.image.files[0]
+
 
         const formData = new FormData()
         formData.append('image', image)
@@ -40,6 +47,8 @@ const AddProducts = () => {
                     location,
                     description,
                     year,
+                    date:currentDate,
+                    time:time,
                     image: data.data.display_url,
                     email:user.email
                 }
@@ -66,17 +75,19 @@ const AddProducts = () => {
             <form onSubmit={handleAddProducts} className='grid grid-cols-1 gap-5'>
                 <input type="text" name='name' placeholder="Product Name" className="input input-bordered input-accent w-full " />
                 <input type="number" name='price' placeholder="price" className="input input-bordered input-accent w-full " />
+                <div>
                 <select name='condition' className="select w-full">
                     <option disabled selected>Product Condition</option>
                     <option>Good</option>
                     <option defaultValue='fair'>fair</option>
                     <option>Excellent</option>
                 </select>
+                </div>
                 <select name='category' className="select w-full">
                     <option disabled selected>Product Category</option>
-                    <option>Honda</option>
-                    <option>Yamaha</option>
-                    <option>Suzuki</option>
+                    <option >Honda</option>
+                    <option >Yamaha</option>
+                    <option >Suzuki</option>
                 </select>
                 <input type="number" name='mobile' placeholder="Mobile Number" className="input input-bordered input-accent w-full " />
                 <input type="text" name='location' placeholder="Location" className="input input-bordered input-accent w-full" />

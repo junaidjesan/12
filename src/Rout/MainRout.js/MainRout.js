@@ -15,6 +15,7 @@ import MyProducts from '../../DashboardComponents/MyProducts/MyProducts';
 import ReportedItems from '../../DashboardComponents/ReportedItems/ReportedItems';
 import DeshBoardLayout from '../../Layout/DeshBoardLayout';
 import HomeLayout from '../../Layout/HomeLayout/HomeLayout';
+import PrivatRout from '../PrivatRout/PrivatRout';
 import Rout404 from '../Rout404/Rout404';
 
 export const WebRouter=createBrowserRouter([
@@ -36,7 +37,7 @@ export const WebRouter=createBrowserRouter([
             },
             {
                 path:'/category-products/:id',
-                element:<CategoryProduct></CategoryProduct>,
+                element:<PrivatRout><CategoryProduct></CategoryProduct></PrivatRout>,
                 loader:({params})=>fetch(`http://localhost:5000/category-products/${params.id}`)
             }
         ]
@@ -58,7 +59,7 @@ export const WebRouter=createBrowserRouter([
                 element:<AddProducts></AddProducts>
             },
             {
-                path:'/dashboard/sellers',
+                path:'/dashboard',
                 element:<AllSellers></AllSellers>
             },
             {

@@ -1,15 +1,15 @@
 import React, { createContext, useEffect, useState } from 'react';
 import app from '../Firebase/Firebase.Config';
-import {createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithPopup, signOut} from 'firebase/auth'
+import {createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile} from 'firebase/auth'
 import { useQuery } from '@tanstack/react-query';
-import axios from 'axios';
 
 export const AuthContext=createContext()
 const auth=getAuth(app)
 
 
 const WebContext = ({children}) => {
-    const [user,setUser]=useState([])
+    const [user,setUser]=useState({})
+    const [loader,setLoader]=useState(true)
 
     const url='http://localhost:5000/users'
     const {data:usersWithRole=[]}=useQuery({
@@ -20,43 +20,42 @@ const WebContext = ({children}) => {
             return data
         }
     })
-    // console.log(usersWithRole)
-    // console.log(user.email)
-
-    // const ul=`http://localhost:5000/one-users?email=${user.email}`
-    // const {data:eachUser=[]}=useQuery({
-    //     queryKey:['eachUsers'],
-    //     queryFn: async ()=>{
-    //         const res=await fetch(ul)
-    //         const data=await res.json()
-    //         return data
-    //     }
-    // })
-    // console.log(eachUser)
-    
-        
 
     const googleProvider= new GoogleAuthProvider()
 
 
     const GoogleCreateUser=()=>{
+        setLoader(true)
         return signInWithPopup(auth,googleProvider)
     }
 
+    const EmailLoggedIn=(email,password)=>{
+        setLoader(true)
+        return signInWithEmailAndPassword(auth,email,password)
+    }
+
     const EmailCreateUser=(email,password)=>{
+        setLoader(true)
         return createUserWithEmailAndPassword(auth,email,password)
     }
 
     const LogOutUser=()=>{
+        setLoader(true)
         return signOut(auth)
     }
 
     useEffect(()=>{
-        const unsubscribe=onAuthStateChanged(auth,(currentUser)=>{
+        const unsubscribe=onAuthStateChanged(auth,currentUser=>{
             setUser(currentUser)
+            setLoader(false)
         })
-        return ()=>unsubscribe()
-    },[])
+        return (()=>unsubscribe())
+    })
+    const updateUserData=(profile)=>{
+        const updat= updateProfile(auth.currentUser,profile)
+        console.log(updat)
+        return updat
+    }
 
     const values={
         EmailCreateUser,
@@ -64,8 +63,12 @@ const WebContext = ({children}) => {
         LogOutUser,
         user,
         usersWithRole,
+        updateUserData,
+        EmailLoggedIn,
+        setLoader,
+        loader,
     }
-    
+    console.log(user)
     return (
         <div>
             <AuthContext.Provider value={values}>

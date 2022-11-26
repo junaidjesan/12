@@ -9,6 +9,7 @@ const Header = () => {
     const handleLogOut=()=>{
         LogOutUser()
         .then(res=>{
+            console.log(res)
             toast.success('log out successfully')
         })
         .catch(er=>{})

@@ -1,13 +1,16 @@
 import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../Context/WebContext';
-import { setAuthToken } from '../Hook/AuthHook';
 import GoogleLogin from './GoogleLogin';
 
 const Register = () => {
     const { user } = useContext(AuthContext)
     const { EmailCreateUser } = useContext(AuthContext)
+    const {updateUserData}=useContext(AuthContext)
+    const location=useLocation()
+    const navigate=useNavigate()
+    const form = location.state?.from?.pathname || '/'
 
     const handleRegister = event => {
         event.preventDefault()
@@ -32,8 +35,10 @@ const Register = () => {
                     body: JSON.stringify(createUserData)
                 })
                     .then(res => res.json()).then(data => {
-                        toast.success('user created successfully!!!')
                         event.target.reset()
+                        updateUserData(name,email)
+                        navigate(form, { replace: true })
+                        toast.success('user created successfully!!!')
                     })
             })
             .catch(er => { console.log(er) })

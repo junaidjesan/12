@@ -1,21 +1,27 @@
 import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../Context/WebContext';
 import GoogleLogin from './GoogleLogin';
 
 const LogIn = () => {
-    const {EmailCreateUser}=useContext(AuthContext)
+    const {EmailLoggedIn}=useContext(AuthContext)
+    const location=useLocation()
+    const navigate=useNavigate()
+    const form = location.state?.from?.pathname || '/'
 
     const handleLogIn=event=>{
+        console.log(event)
         event.preventDefault() 
         const email=event.target.email.value 
         const password=event.target.password.value 
 
-        EmailCreateUser(email,password)
+        EmailLoggedIn(email,password)
         .then(res=>{
-            toast.success('logged in successfully')
+            console.log(res)
             event.target.reset()
+            navigate(form, { replace: true })
+            toast.success('logged in successfully')
         })
         .catch(er=>{})
     }
