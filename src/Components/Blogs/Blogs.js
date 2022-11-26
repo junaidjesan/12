@@ -2,7 +2,7 @@ import React from 'react';
 
 const Blogs = () => {
     return (
-        <div className='items-center gap-10 md:py-20'>
+        <div className='items-center gap-10 mt-10 md:py-20'>
             <div className="card w-2/3 mb-8 mx-auto bg-neutral text-neutral-content">
                 <div className="card-body items-center text-center">
                     <h2 className="card-title">what are the different ways to manage state!</h2>
