@@ -22,7 +22,7 @@ const CategoryProductModal = ({ clickData }) => {
             location:meeting
         }
 
-        fetch('http://localhost:5000/orders',{
+        fetch('http://localhost:5000/add-orders',{
             method: 'POST',
             headers:{
                 'content-type':'application/json'
@@ -33,7 +33,6 @@ const CategoryProductModal = ({ clickData }) => {
         .then(data=>{
             if(data.acknowledged===true){
                 event.target.reset()
-                
                 toast.success('Booked successfully')
             }
         })

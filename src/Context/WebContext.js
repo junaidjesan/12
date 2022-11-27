@@ -51,6 +51,11 @@ const WebContext = ({children}) => {
         })
         return (()=>unsubscribe())
     })
+
+    const filter = usersWithRole.filter(obj => {
+        return obj.role === 'Seller';
+    });
+
     // const updateUserData=(profile)=>{
     //     const updat= updateProfile(auth.currentUser,profile)
     //     console.log(updat)
@@ -67,6 +72,7 @@ const WebContext = ({children}) => {
         EmailLoggedIn,
         setLoader,
         loader,
+        filter,
     }
     return (
         <div>

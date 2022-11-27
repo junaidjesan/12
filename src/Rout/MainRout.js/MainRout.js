@@ -39,12 +39,12 @@ export const WebRouter=createBrowserRouter([
                 path:'/category-products/:id',
                 element:<PrivatRout><CategoryProduct></CategoryProduct></PrivatRout>,
                 loader:({params})=>fetch(`http://localhost:5000/category-products/${params.id}`)
-            }
+            },
+            {
+                path:'/register',
+                element:<Register></Register>
+            },
         ]
-    },
-    {
-        path:'/register',
-        element:<Register></Register>
     },
     {
         path:'*',
@@ -85,7 +85,7 @@ export const WebRouter=createBrowserRouter([
             {
                 path:'/dashboard/feedback',
                 element:<FeedbackShow></FeedbackShow>
-            }
+            },
         ]
     }
 ])

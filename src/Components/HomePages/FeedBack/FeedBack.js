@@ -15,7 +15,7 @@ const FeedBack = () => {
             feedback:text
         }
 
-        fetch('http://localhost:5000/feedback',{
+        fetch('http://localhost:5000/add-feedback',{
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

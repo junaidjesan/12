@@ -30,27 +30,29 @@ const Header = () => {
                             <li tabIndex={0}><Link to='/all-products'><MdProductionQuantityLimits /> All Products</Link></li>
                             <li><Link className='' to='/blogs'><FaBook /> Blogs</Link></li>
                             <li>
-                            {
-                                user ?
-                                    <>
-                                        <Link className='items-center flex gap-2' onClick={handleLogOut} to='/'>Log Out <BiLogOut /></Link>
-                                    </>
-                                    :
-                                    <>
-                                        <Link to='/logIn'>Log In</Link><br />
-                                    </>
-                            }
+                                {
+                                    user ?
+                                        <>
+                                            <Link className='items-center flex gap-2' onClick={handleLogOut} to='/'>Log Out <BiLogOut /></Link>
+                                        </>
+                                        :
+                                        <>
+                                            <Link to='/logIn'>Log In</Link><br />
+                                        </>
+                                }
                             </li>
                         </ul>
                     </div>
                     <Link className='text-2xl text-clip font-semibold' to='/'>BuySell<small>.com</small></Link>
                 </div>
-                <div className="navbar-center hidden lg:flex">
-                    <ul className="menu menu-horizontal p-0">
-                        <li><Link to='/all-products'>All Products</Link></li>
-                    </ul>
-                </div>
                 <div className="navbar-end gap-10 lg:flex hidden">
+                    {
+                        !user?.uid && <select name='role' className="select w-24">
+                            <option disabled selected>You are</option>
+                            <option selected>Buyer</option>
+                            <option>Seller</option>
+                        </select>
+                    }
                     {
                         user?.uid && <Link to='/dashboard'><FaHouseUser className='h-8 w-8' /></Link>
                     }

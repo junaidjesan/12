@@ -14,12 +14,12 @@ const time = currentTime.toLocaleTimeString("en-US");
 const AddProducts = () => {
     const navigate=useNavigate()
     const {user}=useContext(AuthContext)
-    const [addAfterVerify,setAddAfterVerify]=useState('')
-    const [token]=useToken(addAfterVerify)
+    // const [addAfterVerify,setAddAfterVerify]=useState('')
+    // const [token]=useToken(addAfterVerify)
 
-    if(token){
-        navigate('/dashboard/my-products')
-    }
+    // if(token){
+    //     navigate('/dashboard/my-products')
+    // }
 
     const handleAddProducts = (event) => {
         event.preventDefault()
@@ -27,6 +27,7 @@ const AddProducts = () => {
         const mobile = event.target.mobile.value
         const condition = event.target.condition.value
         const price = event.target.price.value
+        const realpPrice = event.target.realpPrice.value
         const location = event.target.location.value
         const description = event.target.description.value
         const year = event.target.year.value
@@ -51,6 +52,7 @@ const AddProducts = () => {
                     condition,
                     category,
                     price,
+                    realpPrice,
                     location,
                     description,
                     year,
@@ -70,8 +72,8 @@ const AddProducts = () => {
                     .then(res => res.json())
                     .then(data => {
                         event.target.reset()
-                        setAddAfterVerify(user.email)
-                        // navigate('/dashboard/my-products')
+                        // setAddAfterVerify(user.email)
+                        navigate('/dashboard/my-products')
                         toast.success('Product Added successfully!!!')
                     })
 
@@ -83,6 +85,7 @@ const AddProducts = () => {
             <form onSubmit={handleAddProducts} className='grid grid-cols-1 gap-5'>
                 <input type="text" name='name' placeholder="Product Name" className="input input-bordered input-accent w-full " />
                 <input type="number" name='price' placeholder="price" className="input input-bordered input-accent w-full " />
+                <input type="number" name='realpPrice' placeholder="Market price" className="input input-bordered input-accent w-full " />
                 <div>
                 <select name='condition' className="select w-full">
                     <option disabled selected>Product Condition</option>
@@ -100,7 +103,7 @@ const AddProducts = () => {
                 <input type="number" name='mobile' placeholder="Mobile Number" className="input input-bordered input-accent w-full " />
                 <input type="text" name='location' placeholder="Location" className="input input-bordered input-accent w-full" />
                 <input type="text" name='description' placeholder="Description" className="input input-bordered input-accent w-full" />
-                <input type="number" name='year' placeholder="Purchase Year" className="input input-bordered input-accent w-full" />
+                <input type="number" name='year' placeholder="User of year" className="input input-bordered input-accent w-full" />
                 <input type="file" name='image' placeholder='Choose Image' className="file-input w-full" />
                 <button className='btn btn-primary'>Add a New</button>
             </form>
