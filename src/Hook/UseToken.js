@@ -1,20 +1,23 @@
-// import { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
-// const useToken=email=>{
-//     const  [jwtToken,setJwtToken]=useState('')
-//     useEffect(()=>{
-//             if(email){
-//             fetch(`http://localhost:5000/jwt?email=${email}`)
-//             .then(res=>res.json())
-//             .then(data=>{
-//                 if(data.accessToken){
-//                     localStorage.setItem('accessToken', data.accessToken)
-//                     setJwtToken(data.accessToken)
-//                 }
-//             })
-//             }
-//         },[email])
-//     return [jwtToken]
-// }
+const useToken=email=>{
+    const  [jwtToken,setJwtToken]=useState('')
+    useEffect(()=>{
+            if(email){
+            fetch(`http://localhost:5000/jwt?email=${email}`)
+            .then(res=>res.json())
+            .then(data=>{
+                if(data.accessToken){
+                    localStorage.setItem('accessToken', data.accessToken)
+                    setJwtToken(data.accessToken)
+                }
+            })
+            }
+        },[email])
+    return [jwtToken]
+}
 
-// export default useToken;
+export default useToken;
+
+
+

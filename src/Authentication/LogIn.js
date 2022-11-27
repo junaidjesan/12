@@ -1,14 +1,21 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../Context/WebContext';
+import useToken from '../Hook/UseToken';
 import GoogleLogin from './GoogleLogin';
 
 const LogIn = () => {
     const {EmailLoggedIn}=useContext(AuthContext)
     const location=useLocation()
     const navigate=useNavigate()
+    const [loginVerifyToken,setLoginVerifyToken]=useState('')
+    const [token]=useToken(loginVerifyToken)
     const form = location.state?.from?.pathname || '/'
+
+    if(token){
+        navigate(form, { replace: true })
+    }
 
     const handleLogIn=event=>{
         console.log(event)
@@ -20,7 +27,7 @@ const LogIn = () => {
         .then(res=>{
             console.log(res)
             event.target.reset()
-            navigate(form, { replace: true })
+            setLoginVerifyToken(email)
             toast.success('logged in successfully')
         })
         .catch(er=>{})

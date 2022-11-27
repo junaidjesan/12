@@ -3,6 +3,7 @@ import React, { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/WebContext';
+import useToken from '../../Hook/UseToken';
 
 const current = new Date();
 const currentDate = `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()}`;
@@ -13,6 +14,12 @@ const time = currentTime.toLocaleTimeString("en-US");
 const AddProducts = () => {
     const navigate=useNavigate()
     const {user}=useContext(AuthContext)
+    const [addAfterVerify,setAddAfterVerify]=useState('')
+    const [token]=useToken(addAfterVerify)
+
+    if(token){
+        navigate('/dashboard/my-products')
+    }
 
     const handleAddProducts = (event) => {
         event.preventDefault()
@@ -53,7 +60,7 @@ const AddProducts = () => {
                     email:user.email
                 }
 
-                fetch('http://localhost:5000/all-products', {
+                fetch('http://localhost:5000/add-products', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'
@@ -63,7 +70,8 @@ const AddProducts = () => {
                     .then(res => res.json())
                     .then(data => {
                         event.target.reset()
-                        navigate('/dashboard/my-products')
+                        setAddAfterVerify(user.email)
+                        // navigate('/dashboard/my-products')
                         toast.success('Product Added successfully!!!')
                     })
 

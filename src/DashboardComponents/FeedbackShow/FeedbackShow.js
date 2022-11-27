@@ -13,14 +13,14 @@ const FeedbackShow = () => {
     })
 
     return (
-        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
+        <div className='grid grid-cols-1'>
             {
                 feedbacks.map(feedback =>
                     <div className=' gap-2' key={feedback._id}>
-                        <div className="card mb-5 lg:w-96 bg-base-100 shadow-xl">
+                        <div className="card mb-5 mx-7 lg:w-full bg-base-100 shadow-xl">
                             <div className="card-body">
-                                <h2 className="card-title">{feedback.email}</h2>
-                                <p>{feedback.feedback}</p>
+                                <h2 className="card-title bg-slate-200 px-3">{feedback.email}</h2>
+                                <p className='text-start'>{feedback.feedback}</p>
                             </div>
                         </div>
                     </div>

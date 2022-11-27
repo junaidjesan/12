@@ -51,11 +51,11 @@ const WebContext = ({children}) => {
         })
         return (()=>unsubscribe())
     })
-    const updateUserData=(profile)=>{
-        const updat= updateProfile(auth.currentUser,profile)
-        console.log(updat)
-        return updat
-    }
+    // const updateUserData=(profile)=>{
+    //     const updat= updateProfile(auth.currentUser,profile)
+    //     console.log(updat)
+    //     return updat
+    // }
 
     const values={
         EmailCreateUser,
@@ -63,12 +63,11 @@ const WebContext = ({children}) => {
         LogOutUser,
         user,
         usersWithRole,
-        updateUserData,
+        // updateUserData,
         EmailLoggedIn,
         setLoader,
         loader,
     }
-    console.log(user)
     return (
         <div>
             <AuthContext.Provider value={values}>
