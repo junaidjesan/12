@@ -12,7 +12,7 @@ const AllSellers = () => {
     const handleDelete = data => {
         const permition=window.confirm('Are you sure for delete')
         if(permition){
-            fetch(`http://localhost:5000/delete-user/${data._id}`,{
+            fetch(`https://assignment-five-beta.vercel.app/delete-user/${data._id}`,{
                 method: 'DELETE',
             })
             .then(res=>res.json())
@@ -27,7 +27,7 @@ const AllSellers = () => {
     }
 
     const handleVerify=id=>{
-        fetch(`http://localhost:5000/users/verify/${id._id}`,{
+        fetch(`https://assignment-five-beta.vercel.app/users/verify/${id._id}`,{
             method: 'PUT',
         })
         .then(res=>res.json())

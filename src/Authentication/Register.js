@@ -33,7 +33,7 @@ const Register = () => {
                     email,
                     role
                 }
-                fetch('http://localhost:5000/add-users', {
+                fetch('https://assignment-five-beta.vercel.app/add-users', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'

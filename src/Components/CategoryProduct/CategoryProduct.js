@@ -14,7 +14,7 @@ const CategoryProduct = () => {
     const [sendRepot,setSendRepot]=useState([])
 
     useEffect(() => {
-        axios.get(`http://localhost:5000/products-category?category=${loaderData.category}`)
+        axios.get(`https://assignment-five-beta.vercel.app/products-category?category=${loaderData.category}`)
         .then(res => {
             setCategoryProductData(res.data)
             })

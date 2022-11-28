@@ -22,7 +22,7 @@ const CategoryProductModal = ({ clickData }) => {
             location:meeting
         }
 
-        fetch('http://localhost:5000/add-orders',{
+        fetch('https://assignment-five-beta.vercel.app/add-orders',{
             method: 'POST',
             headers:{
                 'content-type':'application/json'

@@ -11,7 +11,7 @@ const WebContext = ({children}) => {
     const [user,setUser]=useState({})
     const [loader,setLoader]=useState(true)
 
-    const url='http://localhost:5000/users'
+    const url='https://assignment-five-beta.vercel.app/users'
     const {data:usersWithRole=[]}=useQuery({
         queryKey:['users'],
         queryFn: async ()=>{

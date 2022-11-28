@@ -4,7 +4,7 @@ import AdvertiseBanner from './AdvertiseBanner';
 
 const Advertise = () => {
     const [allProducts, setAllProducts] = useState([])
-    fetch('http://localhost:5000/all-products')
+    fetch('https://assignment-five-beta.vercel.app/all-products')
         .then(res => res.json())
         .then(er => {
             setAllProducts(er)

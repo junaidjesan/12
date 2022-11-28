@@ -16,7 +16,7 @@ const AllByers = () => {
     const handleDelete = data => {
         const permition=window.confirm('Are you sure for delete')
         if(permition){
-            fetch(`http://localhost:5000/us/${data._id}`,{
+            fetch(`https://assignment-five-beta.vercel.app/us/${data._id}`,{
                 method: 'DELETE',
             })
             .then(res=>res.json())

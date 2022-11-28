@@ -15,7 +15,7 @@ const FeedBack = () => {
             feedback:text
         }
 
-        fetch('http://localhost:5000/add-feedback',{
+        fetch('https://assignment-five-beta.vercel.app/add-feedback',{
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

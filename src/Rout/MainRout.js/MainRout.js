@@ -40,7 +40,7 @@ export const WebRouter=createBrowserRouter([
             {
                 path:'/category-products/:id',
                 element:<PrivatRout><CategoryProduct></CategoryProduct></PrivatRout>,
-                loader:({params})=>fetch(`http://localhost:5000/category-products/${params.id}`)
+                loader:({params})=>fetch(`https://assignment-five-beta.vercel.app/category-products/${params.id}`)
             },
             {
                 path:'/register',

@@ -15,7 +15,7 @@ const MyProducts = () => {
     const handleDelete = data => {
         const permition=window.confirm('Are you sure for delete')
         if(permition){
-            fetch(`http://localhost:5000/product-delete/${data._id}`,{
+            fetch(`https://assignment-five-beta.vercel.app/product-delete/${data._id}`,{
                 method: 'DELETE',
             })
             .then(res=>res.json())
@@ -30,7 +30,7 @@ const MyProducts = () => {
     }
 
     const handleAvailable=available=>{
-        fetch(`http://localhost:5000/product/available/${available._id}`,{
+        fetch(`https://assignment-five-beta.vercel.app/product/available/${available._id}`,{
             method: 'PUT',
         })
         .then(res=>res.json())
@@ -39,7 +39,7 @@ const MyProducts = () => {
         })
     }
     const handlesoled=soled=>{
-        fetch(`http://localhost:5000/product/soled/${soled._id}`,{
+        fetch(`https://assignment-five-beta.vercel.app/product/soled/${soled._id}`,{
             method: 'PUT',
         })
         .then(res=>res.json())
@@ -48,7 +48,7 @@ const MyProducts = () => {
         })
     }
     const handleMakeAds=ads=>{
-        fetch(`http://localhost:5000/product/make_ads/${ads._id}`,{
+        fetch(`https://assignment-five-beta.vercel.app/product/make_ads/${ads._id}`,{
             method: 'PUT',
         })
         .then(res=>res.json())
@@ -58,7 +58,7 @@ const MyProducts = () => {
     }
     
     useEffect(() => {
-        axios.get(`http://localhost:5000/user-products?email=${user?.email}`)
+        axios.get(`https://assignment-five-beta.vercel.app/user-products?email=${user?.email}`)
         .then(res => {
                 setProducts(res.data)
             })

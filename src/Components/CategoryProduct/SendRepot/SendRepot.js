@@ -9,7 +9,7 @@ const SendRepot = ({ sendRepot }) => {
     const handlePostReport=event=>{
         event.preventDefault()
         const text=event.target.text.value 
-        fetch('http://localhost:5000/add-report',{
+        fetch('https://assignment-five-beta.vercel.app/add-report',{
         method:'POST',
         headers:{
             'content-type':'application/json'
