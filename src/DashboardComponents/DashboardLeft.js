@@ -1,13 +1,13 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../Context/WebContext';
-import UseAdmin from '../Hook/UseAdmin';
-import UseSeller from '../Hook/UseSeller';
+import useAdmin from '../Hook/useAdmin';
+import useSeller from '../Hook/useSeller';
 
 const DashboardLeft = () => {
     const { usersWithRole, user } = useContext(AuthContext)
-    const [isAdmin] = UseAdmin(user?.email)
-    const [isSeller] = UseSeller(user?.email)
+    const [isAdmin] = useAdmin(user?.email)
+    const [isSeller] = useSeller(user?.email)
     console.log(isAdmin)
     return (
         <div className='grid grid-cols-3 mb-9 mx-5 lg:grid-cols-1 gap-5 text-start'>

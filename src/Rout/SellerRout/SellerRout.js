@@ -1,15 +1,15 @@
 import React, { useContext } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 import { AuthContext } from '../../Context/WebContext';
-import UseSeller from '../../Hook/UseSeller';
+import useSeller from '../../Hook/useSeller';
 
 const SellerRout = ({children}) => {
     const { user, loading } = useContext(AuthContext)
-    const [isSeller,sellerLoading]=UseSeller(user?.email)
+    const [isSeller,sellerLoading]=useSeller(user?.email)
     const location = useLocation()
 
 console.log(isSeller)
-    if (loading&&sellerLoading) {
+    if (loading||sellerLoading) {
         return (
                 <div class="flex justify-center items-center">
                     <div class="spinner-grow inline-block w-8 h-8 bg-current rounded-full opacity-0" role="status">
@@ -17,9 +17,10 @@ console.log(isSeller)
                     </div>
                 </div>
                 )
+                
     }
 
-    if(isSeller===true){
+    if(isSeller){
         return children
     }
 
