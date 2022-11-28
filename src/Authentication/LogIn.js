@@ -18,14 +18,12 @@ const LogIn = () => {
     }
 
     const handleLogIn=event=>{
-        console.log(event)
         event.preventDefault() 
         const email=event.target.email.value 
         const password=event.target.password.value 
 
         EmailLoggedIn(email,password)
         .then(res=>{
-            console.log(res)
             event.target.reset()
             setLoginVerifyToken(email)
             toast.success('logged in successfully')

@@ -6,7 +6,7 @@ import useToken from '../Hook/UseToken';
 import GoogleLogin from './GoogleLogin';
 
 const Register = () => {
-    const { user } = useContext(AuthContext)
+    const { user,updateUserData } = useContext(AuthContext)
     const { EmailCreateUser } = useContext(AuthContext)
     const location=useLocation()
     const navigate=useNavigate()
@@ -42,12 +42,12 @@ const Register = () => {
                 })
                     .then(res => res.json()).then(data => {
                         event.target.reset()
-                        // updateUserData(name,email)
+                        updateUserData(name,email)
                         setCreateVerifyToken(email)
                         toast.success('user created successfully!!!')
                     })
             })
-            .catch(er => { console.log(er) })
+            .catch(er => { })
     }
     return (
         <div>

@@ -3,27 +3,20 @@ import { useLoaderData } from 'react-router-dom';
 import { FcLike } from 'react-icons/fc'
 import { GoLocation } from 'react-icons/go'
 import CategoryProductModal from './CategoryProductModal';
-import { MdVerified } from 'react-icons/md';
-import { AuthContext } from '../../Context/WebContext';
+import { MdReport, MdVerified } from 'react-icons/md';
 import axios from 'axios';
+import SendRepot from './SendRepot/SendRepot';
 
 const CategoryProduct = () => {
     const loaderData = useLoaderData()
-    const Alldatas = loaderData.data
-    // const [filter]=useContext(AuthContext)
+    const [CategoryProductData,setCategoryProductData]=useState([])
     const [clickData, setClickData] = useState([])
-    console.log(loaderData.category)
-
-    // fetch(`http://localhost:5000//products-category?category=${loaderData.category}`)
-    // .then(res=>res.json())
-    // .then(confirmData=>{
-    //     console.log(confirmData)
-    // })
+    const [sendRepot,setSendRepot]=useState([])
 
     useEffect(() => {
-        axios.get(`http://localhost:5000//products-category?category=${loaderData.category}`)
+        axios.get(`http://localhost:5000/products-category?category=${loaderData.category}`)
         .then(res => {
-                console.log(res.data)
+            setCategoryProductData(res.data)
             })
             .catch(er => { })
     }, [])
@@ -31,13 +24,17 @@ const CategoryProduct = () => {
     const handleClick = (data) => {
         setClickData(data)
     }
+
+    const handleReportClick=(repot)=>{
+        setSendRepot(repot)
+    }
     return (
         <div className='mt-28'>
             <h1 className='text-3xl font-bold'>{loaderData.category}</h1>
-            <div className='md:pt-24 grid grid-cols-1 lg:grid-cols-3 md:grid-cols-3 gap-8'>
+            <div className='md:pt-24 grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-8'>
                 {
-                    Alldatas.map(data =>
-                        <div key={data._id} className="card font-semibold mx-auto w-96 bg-base-100 shadow-xl">
+                    CategoryProductData.map(data =>
+                        <div key={data._id} className="card font-semibold mx-auto lg:w-96 my-18 bg-base-100 shadow-xl">
                             <figure><img className='h-60' src={data.image} alt="Shoes" /></figure>
                             <div className="card-body">
                                 <h2 className="card-title">
@@ -51,13 +48,18 @@ const CategoryProduct = () => {
                                 </p>
                                 <h1 className='text-start'>Year of use: {data.year}</h1>
                                 <p>If a dog chews shoes whose shoes does he choose?</p>
-                                <div>
+                                <div className='text-left'>
                                     <h1>Seller Email: {data.email}</h1>
                                     {
                                         (data.verify === 'verified') && <span className='flex ml-3 items-center'><MdVerified className='text-blue-500' /> {data.verify}</span>
                                     }
                                 </div>
-                                <div className="card-actions justify-end">
+                                <div className='text-left justify-around flex'>
+                                    <h1>Time: {data.time}</h1>
+                                    <h1>Date: {data.date}</h1>
+                                </div>
+                                <div className="card-actions items-center justify-end">
+                                    <label htmlFor='my-modal-2' onClick={()=>handleReportClick(data)}><MdReport className='h-5 w-5'/></label>
                                     <label className='' onClick={(e) => handleClick(data)} htmlFor="my-modal"><div className="badge badge-outline" >Book Now</div></label>
                                     <div className="badge badge-outline"><FcLike /></div>
                                 </div>
@@ -69,6 +71,9 @@ const CategoryProduct = () => {
             <CategoryProductModal
                 clickData={clickData}
             ></CategoryProductModal>
+            <SendRepot
+            sendRepot={sendRepot}
+            ></SendRepot>
         </div>
     );
 };

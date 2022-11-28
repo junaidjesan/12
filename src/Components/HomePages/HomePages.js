@@ -8,10 +8,10 @@ import UserCounter from './UserCounter/UserCounter';
 const HomePages = () => {
     return (
         <div>
-            <div>
+            <div className='w-full'>
                 <Banner></Banner>
             </div>
-            <div>
+            <div className='w-full'>
                 <Advertise></Advertise>
             </div>
             <div>

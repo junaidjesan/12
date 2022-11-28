@@ -6,9 +6,7 @@ import { MdVerified } from 'react-icons/md'
 
 const AllSellers = () => {
     const {filter}=useContext(AuthContext)
-
     
-
     const [sellerRemain,setSellerRemain]=useState({})
 
     const handleDelete = data => {
@@ -30,11 +28,11 @@ const AllSellers = () => {
 
     const handleVerify=id=>{
         fetch(`http://localhost:5000/users/verify/${id._id}`,{
-            method: 'put',
+            method: 'PUT',
         })
         .then(res=>res.json())
         .then(result=>{
-            console.log(result)
+            toast.success('Seller Verified Successfully')
         })
     }
 

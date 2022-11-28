@@ -15,8 +15,10 @@ import MyProducts from '../../DashboardComponents/MyProducts/MyProducts';
 import ReportedItems from '../../DashboardComponents/ReportedItems/ReportedItems';
 import DeshBoardLayout from '../../Layout/DeshBoardLayout';
 import HomeLayout from '../../Layout/HomeLayout/HomeLayout';
+import AdminRout from '../AdminRout/AdminRout';
 import PrivatRout from '../PrivatRout/PrivatRout';
 import Rout404 from '../Rout404/Rout404';
+import SellerRout from '../SellerRout/SellerRout';
 
 export const WebRouter=createBrowserRouter([
     {
@@ -55,36 +57,36 @@ export const WebRouter=createBrowserRouter([
         element:<DeshBoardLayout></DeshBoardLayout>,
         children:[
             {
-                path:'/dashboard/add-products',
-                element:<AddProducts></AddProducts>
-            },
-            {
-                path:'/dashboard',
-                element:<AllSellers></AllSellers>
+                path:'/dashboard/sellers',
+                element:<AdminRout><AllSellers></AllSellers></AdminRout>
             },
             {
                 path:'/dashboard/byers',
-                element:<AllByers></AllByers>
+                element:<AdminRout><AllByers></AllByers></AdminRout>
             },
             {
                 path:'/dashboard/reported-items',
-                element:<ReportedItems></ReportedItems>
+                element:<AdminRout><ReportedItems></ReportedItems></AdminRout>
             },
             {
-                path:'/dashboard/my-products',
-                element:<MyProducts></MyProducts>
+                path:'/dashboard/add-products',
+                element:<SellerRout><AddProducts></AddProducts></SellerRout>
+            },
+            {
+                path:'/dashboard/my-byers',
+                element:<SellerRout><MyByers></MyByers></SellerRout>
+            },
+            {
+                path:'/dashboard/seller-product',
+                element:<SellerRout><MyProducts></MyProducts></SellerRout>
             },
             {
                 path:'/dashboard/my-orders',
                 element:<MyOrders></MyOrders>
             },
             {
-                path:'/dashboard/my-byers',
-                element:<MyByers></MyByers>
-            },
-            {
                 path:'/dashboard/feedback',
-                element:<FeedbackShow></FeedbackShow>
+                element:<AdminRout><FeedbackShow></FeedbackShow></AdminRout>
             },
         ]
     }

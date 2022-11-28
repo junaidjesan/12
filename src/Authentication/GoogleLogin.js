@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import toast from 'react-hot-toast';
 import { AuthContext } from '../Context/WebContext';
 
 const GoogleLogin = () => {
@@ -7,7 +8,7 @@ const GoogleLogin = () => {
     const handleGoogleLogIn=()=>{
         GoogleCreateUser()
         .then(res=>{
-            console.log(res)
+            toast.success('User created')
         })
         .catch(er=>{})
     }

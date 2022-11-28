@@ -45,7 +45,7 @@ const CategoryProductModal = ({ clickData }) => {
                 <div className="modal-box">
                     <h3 className="font-bold text-lg">Product Name: {name}</h3>
                     <form onSubmit={handleSubmitOrder} className=''>
-                        <input type="text" defaultValue={user.name} readOnly className="input input-bordered input-accent w-full" />
+                        {/* <input type="text" defaultValue={user.name} readOnly className="input input-bordered input-accent w-full" /> */}
                         <input type="text" defaultValue={user.email} readOnly className="input input-bordered input-accent w-full" />
                         <input type="text" defaultValue={category} readOnly className="input input-bordered input-accent w-full" />
                         <input type="text" defaultValue={condition} readOnly className="input input-bordered input-accent w-full" />

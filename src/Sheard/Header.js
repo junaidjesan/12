@@ -3,7 +3,6 @@ import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../Context/WebContext';
 import { FaBook, FaHouseUser } from 'react-icons/fa'
-import { MdProductionQuantityLimits } from 'react-icons/md'
 import { BiLogOut } from 'react-icons/bi'
 
 const Header = () => {
@@ -12,7 +11,6 @@ const Header = () => {
     const handleLogOut = () => {
         LogOutUser()
             .then(res => {
-                console.log(res)
                 toast.success('log out successfully')
             })
             .catch(er => { })
@@ -27,7 +25,6 @@ const Header = () => {
                         </label>
                         <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                             <li><Link to='/dashboard'><FaHouseUser className='lg:h-8 lg:w-8' /> Dashboard</Link></li>
-                            <li tabIndex={0}><Link to='/all-products'><MdProductionQuantityLimits /> All Products</Link></li>
                             <li><Link className='' to='/blogs'><FaBook /> Blogs</Link></li>
                             <li>
                                 {

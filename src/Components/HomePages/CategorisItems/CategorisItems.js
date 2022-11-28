@@ -16,11 +16,11 @@ const CategorisItems = () => {
         }
     })
     return (
-        <div>
+        <div className='mt-20 mx-5'>
             <h1 className='text-xl font-bold'>Product Categories</h1>
             <div className='justify-around grid grid-cols-1 md:grid-cols-2 gap-5 lg:grid-cols-3 mx-auto mt-10'>
                 {
-                    products.map(product =>
+                    products.map(product => 
                         <div key={product._id} className=" bg-base-100 shadow-xl">
                                 <Link to={`/category-products/${product._id}`}>
                             <figure className=''>

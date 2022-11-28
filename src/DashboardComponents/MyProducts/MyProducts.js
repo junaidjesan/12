@@ -20,7 +20,6 @@ const MyProducts = () => {
             })
             .then(res=>res.json())
             .then(data=>{
-                console.log(data)
                 if (data.deletedCount > 0) {
                     const remainingproduct = productRemain.filter(product => product._id !== data._id)
                     setproductRemain(remainingproduct)
@@ -30,12 +29,36 @@ const MyProducts = () => {
         }
     }
 
-    const pr=(id)=>{
-        console.log(id)
+    const handleAvailable=available=>{
+        fetch(`http://localhost:5000/product/available/${available._id}`,{
+            method: 'PUT',
+        })
+        .then(res=>res.json())
+        .then(result=>{
+                toast.success('Make Available Successful')
+        })
+    }
+    const handlesoled=soled=>{
+        fetch(`http://localhost:5000/product/soled/${soled._id}`,{
+            method: 'PUT',
+        })
+        .then(res=>res.json())
+        .then(result=>{
+                toast.success('Make Soled Successful')
+        })
+    }
+    const handleMakeAds=ads=>{
+        fetch(`http://localhost:5000/product/make_ads/${ads._id}`,{
+            method: 'PUT',
+        })
+        .then(res=>res.json())
+        .then(result=>{
+                toast.success('Add to ads page Successful')
+        })
     }
     
     useEffect(() => {
-        axios.get(`http://localhost:5000/all-products?email=${user?.email}`)
+        axios.get(`http://localhost:5000/user-products?email=${user?.email}`)
         .then(res => {
                 setProducts(res.data)
             })
@@ -67,8 +90,9 @@ const MyProducts = () => {
                                         <p className='text-black text-start'>{product.description}</p>
                                         <div className="card-actions justify-end">
                                             <label htmlFor=""><div onClick={()=>handleDelete(product)} className="badge badge-outline">Delete</div></label>
-                                            <label htmlFor=""><div className="badge badge-outline">Soled</div></label>
-                                            <label htmlFor=""><div onClick={()=>pr(product)} className="badge badge-outline">Make Ads</div></label>
+                                            <label htmlFor=""><div onClick={()=>handleAvailable(product)} className="badge badge-outline">Available</div></label>
+                                            <label htmlFor=""><div onClick={()=>handlesoled(product)} className="badge badge-outline">Soled</div></label>
+                                            <label htmlFor=""><div onClick={()=>handleMakeAds(product)} className="badge badge-outline">Make Ads</div></label>
                                                 <div className='gap-5'>Time: {product.time}
                                                     <span className='ml-4'>Date: {product.date}</span>
                                                 </div>

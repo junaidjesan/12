@@ -56,11 +56,10 @@ const WebContext = ({children}) => {
         return obj.role === 'Seller';
     });
 
-    // const updateUserData=(profile)=>{
-    //     const updat= updateProfile(auth.currentUser,profile)
-    //     console.log(updat)
-    //     return updat
-    // }
+    const updateUserData=(profile)=>{
+        const updat= updateProfile(auth.currentUser,profile)
+        return updat
+    }
 
     const values={
         EmailCreateUser,
@@ -68,7 +67,7 @@ const WebContext = ({children}) => {
         LogOutUser,
         user,
         usersWithRole,
-        // updateUserData,
+        updateUserData,
         EmailLoggedIn,
         setLoader,
         loader,
